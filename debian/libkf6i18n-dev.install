@@ -1,0 +1,5 @@
+usr/include/KF6/KI18n/
+usr/include/KF6/KI18nLocaleData/
+usr/lib/*/cmake/KF6I18n/
+usr/lib/*/libKF6I18n.so
+usr/lib/*/libKF6I18nLocaleData.so
