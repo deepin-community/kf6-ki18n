@@ -1,3 +1,27 @@
+kf6-ki18n (6.8.0-2) unstable; urgency=medium
+
+  * sourceful upload to get the package migrate to testing.
+
+ -- Sandro Knauß <hefee@debian.org>  Tue, 10 Dec 2024 18:02:57 +0100
+
+kf6-ki18n (6.8.0-1) unstable; urgency=medium
+
+  [ Aurélien COUDERC ]
+  * New upstream release (6.8.0).
+  * Update build-deps and deps with the info from cmake.
+  * Package the libKF6I18nQml library for QML bindings.
+  * Fix duplicate short descriptions.
+  * Release to unstable.
+
+ -- Aurélien COUDERC <coucouf@debian.org>  Wed, 04 Dec 2024 16:39:42 +0100
+
+kf6-ki18n (6.7.0-1) experimental; urgency=medium
+
+  * Team upload.
+  * New upstream release.
+
+ -- Simon Quigley <tsimonq2@debian.org>  Sun, 03 Nov 2024 19:29:25 -0600
+
 kf6-ki18n (6.6.0-2) unstable; urgency=medium
 
   * Team upload.

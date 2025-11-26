@@ -10,15 +10,15 @@ Build-Depends: cmake (>= 3.16~),
                dh-sequence-pkgkde-symbolshelper,
                dh-sequence-qmldeps,
                doxygen (>= 1.8.13~),
-               extra-cmake-modules (>= 6.6.0~),
+               extra-cmake-modules (>= 6.8.0~),
                gettext,
                iso-codes <!nocheck>,
-               locales-all <!nocheck>,
                python3:any,
                qml6-module-qtqml-models <!nocheck>,
                qml6-module-qtqml-workerscript <!nocheck>,
                qt6-base-dev (>= 6.5.0+dfsg~),
                qt6-declarative-dev (>= 6.5.0+dfsg~),
+               qt6-declarative-private-dev,
                qt6-tools-dev (>= 6.5.0~),
 Standards-Version: 4.7.0
 Homepage: https://invent.kde.org/frameworks/ki18n
@@ -30,7 +30,7 @@ Package: libkf6i18n-data
 Architecture: all
 Multi-Arch: foreign
 Depends: ${misc:Depends}, ${shlibs:Depends},
-Description: Advanced internationalization framework
+Description: Advanced internationalization framework (architecture-independent data)
  Ki18n is the KDE internationalization system for
  user-interface text. It enables localization of
  user-visible strings, including locale-aware argument
@@ -50,13 +50,14 @@ Multi-Arch: same
 Depends: gettext,
          libkf6i18n6 (= ${binary:Version}),
          libkf6i18nlocaledata6 (= ${binary:Version}),
+         libkf6i18nqml6 (= ${binary:Version}),
          python3:any,
          qml6-module-org-kde-i18n-localedata (= ${binary:Version}),
          qt6-base-dev (>= 6.5.0+dfsg~),
          qt6-declarative-dev (>= 6.5.0+dfsg~),
          ${misc:Depends},
 Recommends: libkf6i18n-doc (= ${source:Version}),
-Description: Advanced internationalization framework
+Description: Advanced internationalization framework (development files)
  Ki18n is the KDE internationalization system for
  user-interface text. It enables localization of
  user-visible strings, including locale-aware argument
@@ -120,6 +121,24 @@ Description: Advanced internationalization framework (locale data)
  functionality over basic Gettext.
  .
  Locale data library.
+
+Package: libkf6i18nqml6
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+Description: Advanced internationalization framework (QML bindings)
+ Ki18n is the KDE internationalization system for
+ user-interface text. It enables localization of
+ user-visible strings, including locale-aware argument
+ substitution and formatting. Ki18n is built atop the
+ widely used Gettext internationalization system, making
+ the workflow familiar to both programmers and translators.
+ It can be considered a Gettext-wrapper for code based on
+ the Qt library, but it also provides additional
+ functionality over basic Gettext.
+ .
+ QML bindings library.
 
 Package: qml6-module-org-kde-i18n-localedata
 Architecture: any

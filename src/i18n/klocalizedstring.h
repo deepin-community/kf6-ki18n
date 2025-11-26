@@ -14,8 +14,6 @@
 #include <QString>
 #include <QStringList>
 
-#include <memory>
-
 #include <kuitsetup.h>
 
 // enforce header to be parsed before redefining i18n* with preprocessor macros
@@ -136,19 +134,6 @@ public:
      */
     Q_REQUIRED_RESULT QString toString(const QStringList &languages) const;
 
-#if 0 // until locale system is ready
-    /**
-     * Like \c toString, but look for translation based on given locale.
-     *
-     * Given locale overrides any set earlier using \c withLocale.
-     * If \p locale is \c NULL, original message is returned.
-     *
-     * \param locale the locale for which translations are made
-     * \return finalized translation
-     */
-    QString toString(const KLocale *locale) const;
-#endif
-
     /**
      * Like \c toString, but look for translation in the given domain.
      *
@@ -179,16 +164,6 @@ public:
      * \return updated \c KLocalizedString
      */
     Q_REQUIRED_RESULT KLocalizedString withLanguages(const QStringList &languages) const;
-
-#if 0 // until locale system is ready
-    /**
-     * Indicate to look for translation based on given locale.
-     *
-     * \param locale the locale for which translations are made
-     * \return updated \c KLocalizedString
-     */
-    KLocalizedString withLocale(const KLocale *locale) const;
-#endif
 
     /**
      * Indicate to look for translation in the given domain.
@@ -419,19 +394,6 @@ public:
      */
     static QByteArray applicationDomain();
 
-#if 0 // until locale system is ready
-    /**
-     * Set the locale for which translations will be made.
-     *
-     * Locale determines from which languages (and in which order)
-     * to draw translations, formatting of number arguments, etc.
-     *
-     * \param locale the locale
-     * \see setLanguages
-     */
-    static void setLocale(const KLocale &locale);
-#endif
-
     /**
      * Get the languages for which translations will be made.
      *
@@ -565,7 +527,9 @@ private:
     KLocalizedString(const char *domain, const char *context, const char *text, const char *plural, bool markupAware);
 
 private:
-    std::unique_ptr<KLocalizedStringPrivate> const d;
+    // intentionally not a unique_ptr as this file gets included a lot and using a unique_ptr
+    // results in too many template instantiations
+    KLocalizedStringPrivate *const d;
 };
 
 // Do not document every multi-argument i18n* call separately,
