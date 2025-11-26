@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.16)
 
-set(KF_VERSION "6.6.0") # handled by release scripts
+set(KF_VERSION "6.8.0") # handled by release scripts
 project(KI18n VERSION ${KF_VERSION})
 
 # ECM setup
 include(FeatureSummary)
-find_package(ECM 6.6.0  NO_MODULE)
+find_package(ECM 6.8.0  NO_MODULE)
 set_package_properties(ECM PROPERTIES TYPE REQUIRED DESCRIPTION "Extra CMake Modules." URL "https://commits.kde.org/extra-cmake-modules")
 feature_summary(WHAT REQUIRED_PACKAGES_NOT_FOUND FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
@@ -61,6 +61,10 @@ set_package_properties(IsoCodes PROPERTIES TYPE RUNTIME
 # we have to hardcode the PYTHON_EXECUTABLE path or anything depending on KF6I18n
 # would be unable to find another Python version.
 find_package(Python3 REQUIRED COMPONENTS Interpreter)
+# allow settings this path explicitly for cross-building setups
+if (NOT FALLBACK_KI18N_PYTHON_EXECUTABLE)
+    set(FALLBACK_KI18N_PYTHON_EXECUTABLE ${Python3_EXECUTABLE})
+endif()
 configure_file(cmake/KF6I18nMacros.cmake.in ${KI18n_BINARY_DIR}/cmake/KF6I18nMacros.cmake @ONLY)
 # Needed to build the ki18n translations and run the autotests
 file(COPY ${KI18n_SOURCE_DIR}/cmake/build-pofiles.cmake DESTINATION ${KI18n_BINARY_DIR}/cmake)
